@@ -5,3 +5,22 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
+
+[dependency-groups]
+dev = ["taskipy>=1.14.1"]
+
+[tool.taskipy.tasks]
+lint = "ruff check ."
+fmt = "ruff format ."
+fix = "ruff check --fix . && ruff format ."
+run = "uv run main.py"
+
+[tool.ruff]
+lint.select = ["F", "UP", "N", "I", "E", "ANN"]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
