@@ -25,6 +25,7 @@ class Dumpcs:
     def _load(self) -> None:
         """Load and parse dump.cs file"""
         self.code = self.path.read_text(encoding="utf-8")
+        self.code = re.sub(r"// 0x[0-9a-f]{8}", "// 0x00000000", self.code)  # remove address for git diff
         self._parse()
         print(f"Found {len(self.entries)} namespaces\n")
 
